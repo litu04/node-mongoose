@@ -9,12 +9,16 @@ const connect = mongoose.connect(url);
 connect.then((db) => {
     console.log("Connected to the mongoDb server");
 
-    var newDish = Dishes({   // creates a new Dish in the dishes db
+    // var newDish = Dishes({   // creates a new Dish in the dishes db
+    //     name: "Paratha",
+    //     description: "aloo type"
+    // });
+
+    //newDish.save()
+    Dishes.create({
         name: "Paratha",
         description: "aloo type"
-    });
-
-    newDish.save()
+    })
         .then((dish) => {
             console.log("Dishes created: ",dish);
 
