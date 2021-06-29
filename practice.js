@@ -22,20 +22,10 @@ connect.then((db) => {
         .then((dish) => {
             console.log("Dishes created: ",dish);
 
-            return Dishes.findByIdAndUpdate(dish._id,{$set: {description: "tastes fine"}},{new: true}).exec(); // find all the dishes from the db
+            return Dishes.find({}).exec(); // find all the dishes from the db
         })
-        .then((dish) => {
-            console.log("Dishes updated: ",dish);
-
-            dish.comments.push({
-                rating: 5,
-                comment: 'I\'m getting a sinking feeling',
-                author: 'Manoj'
-            });
-            return dish.save();
-        })
-        .then((dish) => {
-            console.log("Dishes: ",dish);
+        .then((dishes) => {
+            console.log("Dishes found: ",dishes);
             return Dishes.remove({}); // remove all the dishes from the db
         })
         .then(() => {
